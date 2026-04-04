@@ -2,6 +2,7 @@ extends Node
 
 @export var markerArray: Array[Marker2D]
 @export var area: Area2D
+@export var animationPlayer: AnimationPlayer
 var points = 0
 
 func _ready():
@@ -21,9 +22,8 @@ func move_task_to_random():
 		area.rotation_degrees = 180;
 	elif random_marker.name == "Marker2D4":
 		area.rotation_degrees = 0;
-	
-	await get_tree().create_timer(1.0).timeout
 	area.global_position = random_marker.global_position
+	await get_tree().create_timer(1.0).timeout
 	area.show()
 
 
@@ -33,4 +33,9 @@ func _on_task_body_entered(body: Node2D) -> void:
 		move_task_to_random()
 
 func _lost_life():
-	print("haiay too long")
+	get_tree().paused = true
+	animationPlayer.play("caught")
+	await animationPlayer.animation_finished
+	await get_tree().create_timer(3.0).timeout
+	get_tree().paused = false
+	get_tree().reload_current_scene()

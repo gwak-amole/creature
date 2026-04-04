@@ -52,6 +52,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("task:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_bcc83"]
 length = 0.001
@@ -91,6 +103,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 0, 0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("task:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vh2hq"]
 _data = {
@@ -129,12 +153,14 @@ position = Vector2(359, 170)
 color = Color(0.172833, 0.172833, 0.172833, 1)
 
 [node name="thelight" parent="." instance=ExtResource("3_urg1a")]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(130, 35)
 
-[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("markerArray", "area")]
+[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("markerArray", "area", "animationPlayer")]
 script = ExtResource("4_iabij")
 markerArray = [NodePath("../markers/Marker2D"), NodePath("../markers/Marker2D2"), NodePath("../markers/Marker2D3"), NodePath("../markers/Marker2D4"), NodePath("../markers/Marker2D5"), NodePath("../markers/Marker2D6")]
 area = NodePath("../task")
+animationPlayer = NodePath("../AnimationPlayer")
 
 [node name="markers" type="Node" parent="."]
 
@@ -173,12 +199,14 @@ material = SubResource("CanvasItemMaterial_620h7")
 texture = ExtResource("5_i7pxl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_vh2hq")
 }
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
+texture_filter = 1
 offset_left = 199.0
 offset_top = 133.0
 offset_right = 372.0

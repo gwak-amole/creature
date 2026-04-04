@@ -6,18 +6,19 @@ var direction = Vector2.RIGHT
 var max_speed = 300.0
 var min_speed = 50.0
 var timer = 0.0
-var threshold = 250.0
+var threshold = 30.0
 
 func _ready():
 	randomize_behavior()
 	
 func _process(delta):
 	timer += delta
-	if (timer > threshold && max_speed < 500.0):
-		min_speed += 50
-		max_speed += 50
-		print("increased")
-		timer = 0.0
+	if (timer > threshold):
+			if (max_speed < 600.0):
+				min_speed += 50
+				max_speed += 50
+				print("increased")
+			timer = 0.0
 	
 func _physics_process(delta):
 	position += direction * speed * delta
@@ -45,8 +46,11 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "creature":
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.2).timeout
 		var bodies = $Area2D.get_overlapping_bodies()
 		for aBody in bodies:
 			if aBody.name == "creature":
 				SignalBus.entered_light.emit()
+
+func _hide_light():
+	$PointLight2D.hide()

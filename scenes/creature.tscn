@@ -13,7 +13,7 @@ script = ExtResource("1_e1j8l")
 texture_filter = 1
 sprite_frames = ExtResource("1_xsvrx")
 animation = &"walking"
-frame_progress = 0.930091
+frame_progress = 0.444467
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
