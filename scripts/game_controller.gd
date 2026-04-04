@@ -3,11 +3,16 @@ extends Node
 @export var markerArray: Array[Marker2D]
 @export var area: Area2D
 @export var animationPlayer: AnimationPlayer
+@export var heartContainer: HBoxContainer
 var points = 0
 
 func _ready():
 	SignalBus.entered_light.connect(_lost_life)
 	move_task_to_random()
+	for heart in heartContainer.get_children():
+		heart.hide()
+	for i in range(SignalBus.hp):
+		heartContainer.get_child(i).show()
 
 func move_task_to_random():
 	if markerArray.is_empty():
@@ -38,4 +43,8 @@ func _lost_life():
 	await animationPlayer.animation_finished
 	await get_tree().create_timer(3.0).timeout
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	SignalBus.hp -= 1
+	if SignalBus.hp <= 0:
+		var game_over = true
+	else:
+		get_tree().reload_current_scene()

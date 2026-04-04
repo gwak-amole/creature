@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bvt8h71aonemt"]
+[gd_scene load_steps=14 format=4 uid="uid://bvt8h71aonemt"]
 
 [ext_resource type="TileSet" uid="uid://d4d8280rhg0t3" path="res://assets/tile_set/main_tile_set.tres" id="1_xdgb7"]
 [ext_resource type="PackedScene" uid="uid://b1nxji5qfguu" path="res://scenes/creature.tscn" id="2_ycelb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="4_iabij"]
 [ext_resource type="Texture2D" uid="uid://3l4m5kdy44w6" path="res://assets/taskarea.png" id="5_i7pxl"]
 [ext_resource type="FontFile" uid="uid://d12qcyala78rd" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="6_gp817"]
+[ext_resource type="Texture2D" uid="uid://bpe8nmw7x7aqy" path="res://assets/heart.png" id="7_pvypn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kk6xv"]
 size = Vector2(39, 52)
@@ -122,6 +123,9 @@ _data = {
 "caught": SubResource("Animation_ycviv")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u0omm"]
+light_mode = 1
+
 [node name="main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -156,11 +160,12 @@ color = Color(0.172833, 0.172833, 0.172833, 1)
 modulate = Color(1, 1, 1, 0)
 position = Vector2(130, 35)
 
-[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("markerArray", "area", "animationPlayer")]
+[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer")]
 script = ExtResource("4_iabij")
 markerArray = [NodePath("../markers/Marker2D"), NodePath("../markers/Marker2D2"), NodePath("../markers/Marker2D3"), NodePath("../markers/Marker2D4"), NodePath("../markers/Marker2D5"), NodePath("../markers/Marker2D6")]
 area = NodePath("../task")
 animationPlayer = NodePath("../AnimationPlayer")
+heartContainer = NodePath("../hearts")
 
 [node name="markers" type="Node" parent="."]
 
@@ -215,5 +220,35 @@ theme_override_colors/font_color = Color(1, 0, 0, 0)
 theme_override_fonts/font = ExtResource("6_gp817")
 theme_override_font_sizes/font_size = 50
 text = "caught"
+
+[node name="hearts" type="HBoxContainer" parent="."]
+offset_left = 25.0
+offset_top = 11.0
+offset_right = 153.0
+offset_bottom = 51.0
+
+[node name="TextureRect" type="TextureRect" parent="hearts"]
+z_index = 3
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_u0omm")
+layout_mode = 2
+texture = ExtResource("7_pvypn")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="hearts"]
+z_index = 3
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_u0omm")
+layout_mode = 2
+texture = ExtResource("7_pvypn")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="hearts"]
+z_index = 2
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_u0omm")
+layout_mode = 2
+texture = ExtResource("7_pvypn")
+expand_mode = 2
 
 [connection signal="body_entered" from="task" to="Game Controller" method="_on_task_body_entered"]
