@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=4 uid="uid://bvt8h71aonemt"]
+[gd_scene load_steps=8 format=4 uid="uid://bvt8h71aonemt"]
 
 [ext_resource type="TileSet" uid="uid://d4d8280rhg0t3" path="res://assets/tile_set/main_tile_set.tres" id="1_xdgb7"]
 [ext_resource type="PackedScene" uid="uid://b1nxji5qfguu" path="res://scenes/creature.tscn" id="2_ycelb"]
 [ext_resource type="PackedScene" uid="uid://ddjm37tma0773" path="res://scenes/thelight.tscn" id="3_urg1a"]
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="4_iabij"]
+[ext_resource type="Texture2D" uid="uid://3l4m5kdy44w6" path="res://assets/taskarea.png" id="5_i7pxl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk6xv"]
+size = Vector2(31, 24)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_620h7"]
+light_mode = 1
 
 [node name="main" type="Node2D"]
 
@@ -36,3 +44,46 @@ color = Color(0.172833, 0.172833, 0.172833, 1)
 
 [node name="thelight" parent="." instance=ExtResource("3_urg1a")]
 position = Vector2(130, 35)
+
+[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("markerArray", "area")]
+script = ExtResource("4_iabij")
+markerArray = [NodePath("../markers/Marker2D"), NodePath("../markers/Marker2D2"), NodePath("../markers/Marker2D3"), NodePath("../markers/Marker2D4"), NodePath("../markers/Marker2D5"), NodePath("../markers/Marker2D6")]
+area = NodePath("../task")
+
+[node name="markers" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="markers"]
+position = Vector2(156, 81)
+
+[node name="Marker2D2" type="Marker2D" parent="markers"]
+position = Vector2(209, 259)
+
+[node name="Marker2D3" type="Marker2D" parent="markers"]
+position = Vector2(227, 143)
+
+[node name="Marker2D4" type="Marker2D" parent="markers"]
+position = Vector2(304, 61)
+
+[node name="Marker2D5" type="Marker2D" parent="markers"]
+position = Vector2(419, 80)
+
+[node name="Marker2D6" type="Marker2D" parent="markers"]
+position = Vector2(419, 240)
+
+[node name="task" type="Area2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="task"]
+position = Vector2(1, 12)
+shape = SubResource("RectangleShape2D_kk6xv")
+
+[node name="Sprite2D" type="Sprite2D" parent="task"]
+light_mask = 3
+visibility_layer = 3
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_620h7")
+texture = ExtResource("5_i7pxl")
+
+[connection signal="body_entered" from="task" to="Game Controller" method="_on_task_body_entered"]
