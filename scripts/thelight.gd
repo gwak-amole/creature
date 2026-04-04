@@ -45,4 +45,8 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "creature":
-		SignalBus.entered_light.emit()
+		await get_tree().create_timer(0.4).timeout
+		var bodies = $Area2D.get_overlapping_bodies()
+		for aBody in bodies:
+			if aBody.name == "creature":
+				SignalBus.entered_light.emit()

@@ -33,4 +33,4 @@ func _on_task_body_entered(body: Node2D) -> void:
 		move_task_to_random()
 
 func _lost_life():
-	print("aaa")
+	print("haiay too long")
