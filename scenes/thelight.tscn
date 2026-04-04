@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddjm37tma0773"]
+[gd_scene load_steps=5 format=3 uid="uid://ddjm37tma0773"]
 
 [ext_resource type="Script" path="res://scripts/thelight.gd" id="1_w7xxx"]
 
@@ -12,6 +12,9 @@ fill = 1
 fill_from = Vector2(0.465596, 0.479358)
 fill_to = Vector2(1, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yj3c2"]
+radius = 33.0
+
 [node name="thelight" type="CharacterBody2D"]
 script = ExtResource("1_w7xxx")
 
@@ -22,4 +25,10 @@ texture = SubResource("GradientTexture2D_47kp0")
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yj3c2")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

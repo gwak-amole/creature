@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://wmnioaapjvtq" path="res://assets/sprite_frames/creature_sprite_frames.tres" id="1_xsvrx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2gnit"]
-radius = 8.0
+radius = 12.0
 
 [node name="creature" type="CharacterBody2D"]
 script = ExtResource("1_e1j8l")
@@ -12,9 +12,9 @@ script = ExtResource("1_e1j8l")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("1_xsvrx")
-animation = &"idle"
-frame_progress = 0.335305
+animation = &"walking"
+frame_progress = 0.930091
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 6)
+position = Vector2(-1, 2)
 shape = SubResource("CircleShape2D_2gnit")

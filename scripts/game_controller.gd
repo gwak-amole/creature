@@ -5,11 +5,13 @@ extends Node
 var points = 0
 
 func _ready():
+	SignalBus.entered_light.connect(_lost_life)
 	move_task_to_random()
 
 func move_task_to_random():
 	if markerArray.is_empty():
 		return
+	area.hide()
 	var random_marker = markerArray.pick_random()
 	if random_marker.name == "Marker2D":
 		area.rotation_degrees = 270;
@@ -20,10 +22,15 @@ func move_task_to_random():
 	elif random_marker.name == "Marker2D4":
 		area.rotation_degrees = 0;
 	
+	await get_tree().create_timer(1.0).timeout
 	area.global_position = random_marker.global_position
+	area.show()
 
 
 func _on_task_body_entered(body: Node2D) -> void:
 	if body.name == "creature":
-		move_task_to_random()
 		points += 1
+		move_task_to_random()
+
+func _lost_life():
+	print("aaa")
