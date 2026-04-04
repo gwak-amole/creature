@@ -4,7 +4,7 @@ extends Node
 @export var area: Area2D
 @export var animationPlayer: AnimationPlayer
 @export var heartContainer: HBoxContainer
-var points = 0
+@export var points_label: Label
 
 func _ready():
 	SignalBus.entered_light.connect(_lost_life)
@@ -34,7 +34,8 @@ func move_task_to_random():
 
 func _on_task_body_entered(body: Node2D) -> void:
 	if body.name == "creature":
-		points += 1
+		SignalBus.points += 1
+		points_label.text = str(SignalBus.points)
 		move_task_to_random()
 
 func _lost_life():
