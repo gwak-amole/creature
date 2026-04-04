@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://wmnioaapjvtq"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://wmnioaapjvtq"]
 
 [ext_resource type="Texture2D" uid="uid://c744oxd2e2ohk" path="res://assets/creatureidle.png" id="1_fyxer"]
 [ext_resource type="Texture2D" uid="uid://df7xcj8a06bm7" path="res://assets/creaturewalking.png" id="2_mtwkd"]

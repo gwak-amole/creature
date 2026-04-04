@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=4 uid="uid://bvt8h71aonemt"]
+[gd_scene format=4 uid="uid://bvt8h71aonemt"]
 
 [ext_resource type="TileSet" uid="uid://d4d8280rhg0t3" path="res://assets/tile_set/main_tile_set.tres" id="1_xdgb7"]
 [ext_resource type="PackedScene" uid="uid://b1nxji5qfguu" path="res://scenes/creature.tscn" id="2_ycelb"]
 [ext_resource type="PackedScene" uid="uid://ddjm37tma0773" path="res://scenes/thelight.tscn" id="3_urg1a"]
-[ext_resource type="Script" path="res://scripts/game_controller.gd" id="4_iabij"]
+[ext_resource type="Script" uid="uid://dq7q4kxu0hl8y" path="res://scripts/game_controller.gd" id="4_iabij"]
 [ext_resource type="Texture2D" uid="uid://3l4m5kdy44w6" path="res://assets/taskarea.png" id="5_i7pxl"]
 [ext_resource type="FontFile" uid="uid://d12qcyala78rd" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="6_gp817"]
 [ext_resource type="Texture2D" uid="uid://bpe8nmw7x7aqy" path="res://assets/heart.png" id="7_pvypn"]
@@ -121,8 +121,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vh2hq"]
 _data = {
-"RESET": SubResource("Animation_bcc83"),
-"caught": SubResource("Animation_ycviv")
+&"RESET": SubResource("Animation_bcc83"),
+&"caught": SubResource("Animation_ycviv")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u0omm"]
@@ -134,41 +134,41 @@ light_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wd8no"]
 light_mode = 1
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" unique_id=1499190135]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=376483254]
 position = Vector2(289, 161)
 zoom = Vector2(2, 2)
 
-[node name="map" type="Node" parent="."]
+[node name="map" type="Node" parent="." unique_id=1381254075]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="map"]
+[node name="TileMapLayer" type="TileMapLayer" parent="map" unique_id=53468034]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAARAAAAAAAAAAAAAAARAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAAAAAAAAAAMAP//AAAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAARAP//AAAAAAAAAAARAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAEAAoAAAAAAAAAAAADAAoAAAAAAAAAAAACAAoAAAAAAAAAAAABAAoAAAAAAAAAAAAAAAoAAAAAAAAAAAA=")
 tile_set = ExtResource("1_xdgb7")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="map"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="map" unique_id=1308656037]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAEAAEAAAACAAAAAAAEAAIAAAAKAAAAAAAEAAMAAAAKAAAAAAAEAAQAAAAKAAAAAAAEAAUAAAAKAAAAAAAEAAYAAAAKAAAAAAAEAAcAAAAKAAAAAAAEAAgAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAAFAAQAAAACAAAAAAAFAAUAAAACAAAAAAAFAAYAAAACAAAAAAAFAAcAAAACAAAAAAAFAAgAAAACAAAAAAAGAAEAAAAMAAAAAAAGAAIAAAAGAAAAAAAGAAMAAAAGAAAAAAAGAAQAAAAGAAAAAAAGAAUAAAAEAAAAAAAGAAYAAAAEAAAAAAAGAAcAAAACAAAAAAAGAAgAAAAMAAAAAQAHAAEAAAAMAAAAAAAHAAIAAAAEAAAAAAAHAAMAAAAKAAAAAQAHAAQAAAAKAAAAAQAHAAUAAAAKAAAAAQAHAAYAAAAKAAAAAQAHAAcAAAAEAAAAAAAHAAgAAAAOAAAAAQAIAAEAAAAMAAAAAAAIAAIAAAAEAAAAAAAIAAMAAAAKAAAAAAAIAAQAAAAKAAAAAAAIAAUAAAAKAAAAAAAIAAYAAAAKAAAAAAAIAAcAAAAEAAAAAAAIAAgAAAAOAAAAAQAJAAEAAAAMAAAAAAAJAAIAAAAGAAAAAAAJAAMAAAACAAAAAAAJAAQAAAACAAAAAAAJAAUAAAACAAAAAAAJAAYAAAACAAAAAAAJAAcAAAAEAAAAAAAJAAgAAAAOAAAAAQAKAAEAAAAMAAAAAAAKAAIAAAAEAAAAAAAKAAMAAAAEAAAAAAAKAAQAAAAEAAAAAAAKAAUAAAAEAAAAAAAKAAYAAAAEAAAAAAAKAAcAAAACAAAAAAAKAAgAAAAOAAAAAQALAAEAAAAMAAAAAAALAAIAAAACAAAAAAALAAMAAAAEAAAAAAALAAQAAAAEAAAAAAALAAUAAAAEAAAAAAALAAYAAAAEAAAAAAALAAcAAAACAAAAAAALAAgAAAAOAAAAAQAMAAEAAAACAAAAAAAMAAIAAAACAAAAAAAMAAMAAAAEAAAAAAAMAAQAAAAEAAAAAAAMAAUAAAAEAAAAAAAMAAYAAAACAAAAAAAMAAcAAAACAAAAAAAMAAgAAAAGAAAAAAANAAEAAAACAAAAAAANAAIAAAAKAAAAAQANAAMAAAAKAAAAAQANAAQAAAAEAAAAAAANAAUAAAACAAAAAAANAAYAAAAIAAAAAQANAAcAAAAIAAAAAQANAAgAAAACAAAAAAA=")
 tile_set = ExtResource("1_xdgb7")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="map"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="map" unique_id=2010794665]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAIAAYAAAAUAAAAAAAHAAMAAAAQAAAAAAALAAEAAAAWAAAAAAANAAYAAAAQAAAAAAAMAAMAAAASAAAAAAAFAAcAAAASAAAAAAAJAAgAAAASAAAAAAAGAAEAAAAQAAAAAAAEAAMAAAAUAAAAAAA=")
 tile_set = ExtResource("1_xdgb7")
 
-[node name="creature" parent="." instance=ExtResource("2_ycelb")]
+[node name="creature" parent="." unique_id=315553149 instance=ExtResource("2_ycelb")]
 z_index = 1
 position = Vector2(359, 170)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1380574018]
 color = Color(0.172833, 0.172833, 0.172833, 1)
 
-[node name="thelight" parent="." instance=ExtResource("3_urg1a")]
+[node name="thelight" parent="." unique_id=1762801787 instance=ExtResource("3_urg1a")]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(130, 35)
 
-[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer", "points_label")]
+[node name="Game Controller" type="Node" parent="." unique_id=93182155 node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer", "points_label")]
 script = ExtResource("4_iabij")
 markerArray = [NodePath("../markers/Marker2D"), NodePath("../markers/Marker2D2"), NodePath("../markers/Marker2D3"), NodePath("../markers/Marker2D4"), NodePath("../markers/Marker2D5"), NodePath("../markers/Marker2D6")]
 area = NodePath("../task")
@@ -176,49 +176,47 @@ animationPlayer = NodePath("../AnimationPlayer")
 heartContainer = NodePath("../ui top/hearts")
 points_label = NodePath("../ui top/Label")
 
-[node name="markers" type="Node" parent="."]
+[node name="markers" type="Node" parent="." unique_id=1348915768]
 
-[node name="Marker2D" type="Marker2D" parent="markers"]
+[node name="Marker2D" type="Marker2D" parent="markers" unique_id=411607452]
 position = Vector2(156, 81)
 
-[node name="Marker2D2" type="Marker2D" parent="markers"]
+[node name="Marker2D2" type="Marker2D" parent="markers" unique_id=72845156]
 position = Vector2(209, 259)
 
-[node name="Marker2D3" type="Marker2D" parent="markers"]
+[node name="Marker2D3" type="Marker2D" parent="markers" unique_id=617393973]
 position = Vector2(227, 143)
 
-[node name="Marker2D4" type="Marker2D" parent="markers"]
+[node name="Marker2D4" type="Marker2D" parent="markers" unique_id=221970992]
 position = Vector2(304, 61)
 
-[node name="Marker2D5" type="Marker2D" parent="markers"]
+[node name="Marker2D5" type="Marker2D" parent="markers" unique_id=646145689]
 position = Vector2(419, 80)
 
-[node name="Marker2D6" type="Marker2D" parent="markers"]
+[node name="Marker2D6" type="Marker2D" parent="markers" unique_id=485911309]
 position = Vector2(419, 240)
 
-[node name="task" type="Area2D" parent="."]
+[node name="task" type="Area2D" parent="." unique_id=580470806]
 light_mask = 2
 visibility_layer = 2
 z_index = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="task"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="task" unique_id=837112164]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_kk6xv")
 
-[node name="Sprite2D" type="Sprite2D" parent="task"]
+[node name="Sprite2D" type="Sprite2D" parent="task" unique_id=375975877]
 light_mask = 3
 visibility_layer = 3
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_620h7")
 texture = ExtResource("5_i7pxl")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1287032056]
 process_mode = 3
-libraries = {
-"": SubResource("AnimationLibrary_vh2hq")
-}
+libraries/ = SubResource("AnimationLibrary_vh2hq")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=57331909]
 z_index = 1
 texture_filter = 1
 offset_left = 199.0
@@ -230,20 +228,20 @@ theme_override_fonts/font = ExtResource("6_gp817")
 theme_override_font_sizes/font_size = 50
 text = "caught"
 
-[node name="ui top" type="Control" parent="."]
+[node name="ui top" type="Control" parent="." unique_id=1590467807]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 576.0
 offset_bottom = 352.0
 
-[node name="hearts" type="HBoxContainer" parent="ui top"]
+[node name="hearts" type="HBoxContainer" parent="ui top" unique_id=2107931302]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 11.0
 offset_right = 153.0
 offset_bottom = 51.0
 
-[node name="TextureRect" type="TextureRect" parent="ui top/hearts"]
+[node name="TextureRect" type="TextureRect" parent="ui top/hearts" unique_id=1035051348]
 z_index = 3
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_u0omm")
@@ -251,7 +249,7 @@ layout_mode = 2
 texture = ExtResource("7_pvypn")
 expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="ui top/hearts"]
+[node name="TextureRect2" type="TextureRect" parent="ui top/hearts" unique_id=738559882]
 z_index = 3
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_u0omm")
@@ -259,7 +257,7 @@ layout_mode = 2
 texture = ExtResource("7_pvypn")
 expand_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="ui top/hearts"]
+[node name="TextureRect3" type="TextureRect" parent="ui top/hearts" unique_id=1765177894]
 z_index = 2
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_u0omm")
@@ -267,7 +265,7 @@ layout_mode = 2
 texture = ExtResource("7_pvypn")
 expand_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ui top"]
+[node name="TextureRect" type="TextureRect" parent="ui top" unique_id=1340742807]
 z_index = 1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_t3v0k")
@@ -278,7 +276,7 @@ offset_right = 530.0
 offset_bottom = 55.0
 texture = ExtResource("8_jpnsr")
 
-[node name="Label" type="Label" parent="ui top"]
+[node name="Label" type="Label" parent="ui top" unique_id=1735042099]
 z_index = 3
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_wd8no")
