@@ -52,6 +52,8 @@ func _on_texture_button_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		button_press += 1
 		if button_press == 3:
+			SignalBus.points += 1
+			SignalBus.game_done.emit()
 			_game_done()
 	else:
 		button_press -=1

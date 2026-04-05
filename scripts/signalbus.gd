@@ -1,6 +1,7 @@
 extends Node
 
 signal entered_light
+signal game_done
 
 var hp = 3
 var points = 0

@@ -12,6 +12,7 @@ func _ready():
 	rng.randomize()
 	Talo.players.identify("playerone", "username")
 	SignalBus.entered_light.connect(_lost_life)
+	SignalBus.game_done.connect(move_task_to_random)
 	move_task_to_random()
 	for heart in heartContainer.get_children():
 		heart.hide()
@@ -20,6 +21,7 @@ func _ready():
 	points_label.text = str(SignalBus.points)
 
 func move_task_to_random():
+	points_label.text = SignalBus.points
 	if markerArray.is_empty():
 		return
 	area.hide()
@@ -55,7 +57,7 @@ func _on_task_body_entered(body: Node2D) -> void:
 						move_task_to_random()
 
 func _lost_life():
-	jam_event.game_done()
+	jam_event._game_done()
 	get_tree().paused = true
 	animationPlayer.play("caught")
 	await animationPlayer.animation_finished
