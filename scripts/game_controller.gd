@@ -14,6 +14,7 @@ func _ready():
 		heart.hide()
 	for i in range(SignalBus.hp):
 		heartContainer.get_child(i).show()
+	points_label.text = str(SignalBus.points)
 
 func move_task_to_random():
 	if markerArray.is_empty():
@@ -35,9 +36,13 @@ func move_task_to_random():
 
 func _on_task_body_entered(body: Node2D) -> void:
 	if body.name == "creature":
-		SignalBus.points += 1
-		points_label.text = str(SignalBus.points)
-		move_task_to_random()
+		await get_tree().create_timer(1.0).timeout
+		var bodies = area.get_overlapping_bodies()
+		for aBody in bodies:
+			if aBody.name == "creature":
+				SignalBus.points += 1
+				points_label.text = str(SignalBus.points)
+				move_task_to_random()
 
 func _lost_life():
 	get_tree().paused = true

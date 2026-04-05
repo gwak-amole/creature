@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ddjm37tma0773" path="res://scenes/thelight.tscn" id="3_urg1a"]
 [ext_resource type="Script" uid="uid://dq7q4kxu0hl8y" path="res://scripts/game_controller.gd" id="4_iabij"]
 [ext_resource type="Texture2D" uid="uid://3l4m5kdy44w6" path="res://assets/taskarea.png" id="5_i7pxl"]
+[ext_resource type="Script" uid="uid://di4c82mjkfspr" path="res://scripts/progress_bar.gd" id="6_choun"]
 [ext_resource type="FontFile" uid="uid://d12qcyala78rd" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="6_gp817"]
 [ext_resource type="Texture2D" uid="uid://bpe8nmw7x7aqy" path="res://assets/heart.png" id="7_pvypn"]
 [ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="8_iesm3"]
@@ -15,6 +16,23 @@ size = Vector2(39, 52)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_620h7"]
 light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_85g3d"]
+light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.39081654, 0.45900083, 0.5958067, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.15036315, 0.27707767, 0.53367203, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="Animation_bcc83"]
 length = 0.001
@@ -212,6 +230,20 @@ texture_filter = 1
 material = SubResource("CanvasItemMaterial_620h7")
 texture = ExtResource("5_i7pxl")
 
+[node name="ProgressBar" type="ProgressBar" parent="task" unique_id=2069622444]
+z_index = 1
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_85g3d")
+offset_left = -27.0
+offset_top = -20.0
+offset_right = 27.0
+offset_bottom = -8.0
+theme_override_constants/outline_size = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_85g3d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
+show_percentage = false
+script = ExtResource("6_choun")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1287032056]
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_vh2hq")
@@ -292,3 +324,5 @@ text = "0"
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="task" to="Game Controller" method="_on_task_body_entered"]
+[connection signal="body_entered" from="task" to="task/ProgressBar" method="_on_task_body_entered"]
+[connection signal="body_exited" from="task" to="task/ProgressBar" method="_on_task_body_exited"]

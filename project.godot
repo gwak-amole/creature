@@ -15,6 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="creature"
+run/main_scene="uid://3de0i5ik46rw"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -22,6 +23,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://scripts/signalbus.gd"
 Talo="*uid://bpmdn8oc34pg7"
+Transition="*uid://dan40wqey5b37"
 
 [display]
 

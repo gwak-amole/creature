@@ -3,6 +3,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().process_frame
+	Transition.hide()
+	$CanvasModulate.color = Color.BLACK
+	
+	SignalBus.hp = 3
+	SignalBus.points = 0
+	
 	$AnimationPlayer.play("boot_up")
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("start_screen")

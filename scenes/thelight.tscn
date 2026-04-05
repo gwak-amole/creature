@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddjm37tma0773"]
+[gd_scene format=3 uid="uid://ddjm37tma0773"]
 
-[ext_resource type="Script" path="res://scripts/thelight.gd" id="1_w7xxx"]
+[ext_resource type="Script" uid="uid://dm8k1bbjcw58u" path="res://scripts/thelight.gd" id="1_w7xxx"]
 
 [sub_resource type="Gradient" id="Gradient_4m1rm"]
 offsets = PackedFloat32Array(0, 0.863636)
@@ -15,19 +15,19 @@ fill_to = Vector2(1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_yj3c2"]
 radius = 33.0
 
-[node name="thelight" type="CharacterBody2D"]
+[node name="thelight" type="CharacterBody2D" unique_id=1656894567]
 script = ExtResource("1_w7xxx")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1163506210]
 texture = SubResource("GradientTexture2D_47kp0")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=492925526]
 one_shot = true
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1261236561]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=632410537]
 shape = SubResource("CircleShape2D_yj3c2")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
