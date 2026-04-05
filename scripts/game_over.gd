@@ -4,12 +4,14 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Transition.hide()
+	$AudioStreamPlayer.play()
 	$AnimationPlayer.play("game_over")
 
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		$AnimationPlayer.stop()
+		$AudioStreamPlayer.stop()
 		await get_tree().physics_frame
 		$AnimationPlayer.play("going back")
 		await get_tree().create_timer(1.5).timeout

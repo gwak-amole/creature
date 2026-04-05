@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b40h7d18or36f" path="res://assets/onbutton.png" id="3_tx1dk"]
 [ext_resource type="Texture2D" uid="uid://dev0u5eeamdu3" path="res://assets/offbutton.png" id="4_qhv5h"]
 [ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="6_tx1dk"]
+[ext_resource type="AudioStream" uid="uid://q75sbll8f328" path="res://audio/music/659319__jorge_m_rodrigues__old-oven-timer.mp3" id="7_qhv5h"]
 
 [sub_resource type="Animation" id="Animation_tx1dk"]
 length = 0.001
@@ -140,6 +141,9 @@ horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=649595443]
 libraries/ = SubResource("AnimationLibrary_wr4ho")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1021940248]
+stream = ExtResource("7_qhv5h")
 
 [connection signal="pressed" from="VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/TextureButton" to="." method="_on_texture_button_toggled"]

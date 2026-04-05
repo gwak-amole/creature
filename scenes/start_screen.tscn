@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dgf8e4d443eec" path="res://assets/vignette.png" id="4_r2jwc"]
 [ext_resource type="Texture2D" uid="uid://cofpychsewsn8" path="res://assets/biggertitle2.png" id="5_hm208"]
 [ext_resource type="Texture2D" uid="uid://c1fj6tvptwv42" path="res://assets/vignette2.png" id="7_o30b1"]
+[ext_resource type="AudioStream" uid="uid://2ujse0tty7ks" path="res://audio/music/661248__magmadiverrr__video-game-menu-music.mp3" id="8_ka6nf"]
+[ext_resource type="AudioStream" uid="uid://bsitc61e7s10n" path="res://audio/music/167918__ani_music__spooky-steel-reverse.wav" id="9_ws7p0"]
+[ext_resource type="AudioStream" uid="uid://bktbsdk1w2r6f" path="res://audio/music/788643__philip_berger__light-switch-on.wav" id="10_ecdxc"]
 
 [sub_resource type="Animation" id="Animation_5pab1"]
 length = 0.001
@@ -46,6 +49,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("going_in:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("spotlight:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ka6nf"]
 resource_name = "boot_up"
@@ -74,6 +101,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0.0, 5.0, 1.0, 0.6]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spotlight:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ws7p0"]
 resource_name = "going_in"
@@ -101,6 +140,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("going_in:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_o30b1"]
@@ -211,6 +262,7 @@ grow_vertical = 2
 texture = ExtResource("2_he1sj")
 
 [node name="play" type="Label" parent="." unique_id=1362316239]
+modulate = Color(1, 1, 1, 0.6933538)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -234,7 +286,7 @@ modulate = Color(1, 1, 1, 0.25882354)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("7_o30b1")
+texture = ExtResource("4_r2jwc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=138248695]
 process_mode = 3
@@ -248,3 +300,12 @@ position = Vector2(570.31323, 578.99005)
 rotation = 0.80032104
 scale = Vector2(15.0229435, 14.835588)
 texture = SubResource("GradientTexture2D_ecdxc")
+
+[node name="menu" type="AudioStreamPlayer" parent="." unique_id=2127930054]
+stream = ExtResource("8_ka6nf")
+
+[node name="going_in" type="AudioStreamPlayer" parent="." unique_id=663095462]
+stream = ExtResource("9_ws7p0")
+
+[node name="spotlight" type="AudioStreamPlayer" parent="." unique_id=1450189434]
+stream = ExtResource("10_ecdxc")

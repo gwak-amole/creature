@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b75stebffrrfw" path="res://scripts/game_over.gd" id="1_tbwuq"]
 [ext_resource type="FontFile" uid="uid://d12qcyala78rd" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="1_wqhvx"]
 [ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="2_tbwuq"]
+[ext_resource type="AudioStream" uid="uid://cuppxsyfbj3wf" path="res://audio/music/833636__nomagician__butterflow-menu-music-theme.mp3" id="4_racf3"]
 
 [sub_resource type="Animation" id="Animation_racf3"]
 length = 0.001
@@ -188,3 +189,6 @@ theme_override_font_sizes/font_size = 40
 text = "press e to rewind time..."
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=467828777]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1059252947]
+stream = ExtResource("4_racf3")

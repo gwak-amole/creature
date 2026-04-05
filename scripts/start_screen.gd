@@ -13,11 +13,13 @@ func _ready() -> void:
 	$AnimationPlayer.play("boot_up")
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("start_screen")
+	$menu.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
+		$menu.stop()
 		$AnimationPlayer.stop()
 		await get_tree().physics_frame
 		$AnimationPlayer.play("going_in")

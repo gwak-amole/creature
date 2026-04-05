@@ -6,10 +6,15 @@ extends Node
 @export var heartContainer: HBoxContainer
 @export var points_label: Label
 @export var jam_event: CanvasLayer
+@export var camera: Camera2D
+@export var main_audio: AudioStreamPlayer
+@export var success_audio: AudioStreamPlayer
+@export var lose_audio: AudioStreamPlayer
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
+	await get_tree().process_frame
 	Talo.players.identify("playerone", "username")
 	SignalBus.entered_light.connect(_lost_life)
 	SignalBus.game_done.connect(move_task_to_random)
@@ -19,9 +24,11 @@ func _ready():
 	for i in range(SignalBus.hp):
 		heartContainer.get_child(i).show()
 	points_label.text = str(SignalBus.points)
+	main_audio.play()
 
 func move_task_to_random():
-	points_label.text = SignalBus.points
+	camera.apply_shake(0.0)
+	points_label.text = str(SignalBus.points)
 	if markerArray.is_empty():
 		return
 	area.hide()
@@ -47,11 +54,13 @@ func _on_task_body_entered(body: Node2D) -> void:
 		if body.name == "creature":
 			if SignalBus.jam_chance == 1:
 				jam_event.jam_event()
+				camera.apply_shake(1.0)
 			else:
 				await get_tree().create_timer(1.0).timeout
 				var bodies = area.get_overlapping_bodies()
 				for aBody in bodies:
 					if aBody.name == "creature":
+						success_audio.play()
 						SignalBus.points += 1
 						points_label.text = str(SignalBus.points)
 						move_task_to_random()
@@ -60,6 +69,7 @@ func _lost_life():
 	jam_event._game_done()
 	get_tree().paused = true
 	animationPlayer.play("caught")
+	lose_audio.play()
 	await animationPlayer.animation_finished
 	await get_tree().create_timer(3.0).timeout
 	get_tree().paused = false

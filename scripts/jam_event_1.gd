@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 		hide()
 	
 func jam_event():
+	$AudioStreamPlayer.play()
 	SignalBus.still_jam = true
 	$AnimationPlayer.play("text")
 	button_press = 0
@@ -39,6 +40,7 @@ func jam_event():
 		
 
 func _game_done():
+	$AudioStreamPlayer.stop()
 	SignalBus.still_jam = false
 	for button in all_buttons:
 		button.disabled = true
@@ -57,3 +59,8 @@ func _on_texture_button_toggled(toggled_on: bool) -> void:
 			_game_done()
 	else:
 		button_press -=1
+
+
+func _on_task_body_exited(body: Node2D) -> void:
+	if body.name == "creature":
+		hide()
