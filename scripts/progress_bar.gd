@@ -22,13 +22,15 @@ func _process(delta: float) -> void:
 			time = 0.0
 
 func _on_task_body_exited(body: Node2D) -> void:
-	if body.name == "creature":
-		hide()
-		time = 0.0
-		value = 0.0
-		change_progress = false
+	if SignalBus.jam_chance != 1:
+		if body.name == "creature":
+			hide()
+			time = 0.0
+			value = 0.0
+			change_progress = false
 
 func _on_task_body_entered(body: Node2D) -> void:
-	if body.name == "creature":
-		show()
-		change_progress = true
+	if SignalBus.jam_chance != 1:
+		if body.name == "creature":
+			show()
+			change_progress = true

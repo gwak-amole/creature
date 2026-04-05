@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bpe8nmw7x7aqy" path="res://assets/heart.png" id="7_pvypn"]
 [ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="8_iesm3"]
 [ext_resource type="Texture2D" uid="uid://c44c6x0doup2b" path="res://assets/tshirticon.png" id="8_jpnsr"]
+[ext_resource type="PackedScene" uid="uid://b64c5bauhwrv2" path="res://scenes/jam_event_1.tscn" id="11_ya4ey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kk6xv"]
 size = Vector2(39, 52)
@@ -186,13 +187,14 @@ color = Color(0.172833, 0.172833, 0.172833, 1)
 modulate = Color(1, 1, 1, 0)
 position = Vector2(130, 35)
 
-[node name="Game Controller" type="Node" parent="." unique_id=93182155 node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer", "points_label")]
+[node name="Game Controller" type="Node" parent="." unique_id=93182155 node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer", "points_label", "jam_event")]
 script = ExtResource("4_iabij")
 markerArray = [NodePath("../markers/Marker2D"), NodePath("../markers/Marker2D2"), NodePath("../markers/Marker2D3"), NodePath("../markers/Marker2D4"), NodePath("../markers/Marker2D5"), NodePath("../markers/Marker2D6")]
 area = NodePath("../task")
 animationPlayer = NodePath("../AnimationPlayer")
 heartContainer = NodePath("../ui top/hearts")
 points_label = NodePath("../ui top/Label")
+jam_event = NodePath("../jam_event")
 
 [node name="markers" type="Node" parent="." unique_id=1348915768]
 
@@ -322,6 +324,8 @@ theme_override_fonts/font = ExtResource("8_iesm3")
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 1
+
+[node name="jam_event" parent="." unique_id=1487911958 instance=ExtResource("11_ya4ey")]
 
 [connection signal="body_entered" from="task" to="Game Controller" method="_on_task_body_entered"]
 [connection signal="body_entered" from="task" to="task/ProgressBar" method="_on_task_body_entered"]

@@ -5,8 +5,11 @@ extends Node
 @export var animationPlayer: AnimationPlayer
 @export var heartContainer: HBoxContainer
 @export var points_label: Label
+@export var jam_event: CanvasLayer
+var rng = RandomNumberGenerator.new()
 
 func _ready():
+	rng.randomize()
 	Talo.players.identify("playerone", "username")
 	SignalBus.entered_light.connect(_lost_life)
 	move_task_to_random()
@@ -35,16 +38,24 @@ func move_task_to_random():
 
 
 func _on_task_body_entered(body: Node2D) -> void:
-	if body.name == "creature":
-		await get_tree().create_timer(1.0).timeout
-		var bodies = area.get_overlapping_bodies()
-		for aBody in bodies:
-			if aBody.name == "creature":
-				SignalBus.points += 1
-				points_label.text = str(SignalBus.points)
-				move_task_to_random()
+	if SignalBus.still_jam:
+		jam_event.show()
+	else:
+		SignalBus.jam_chance = rng.randi_range(1, 4)
+		if body.name == "creature":
+			if SignalBus.jam_chance == 1:
+				jam_event.jam_event()
+			else:
+				await get_tree().create_timer(1.0).timeout
+				var bodies = area.get_overlapping_bodies()
+				for aBody in bodies:
+					if aBody.name == "creature":
+						SignalBus.points += 1
+						points_label.text = str(SignalBus.points)
+						move_task_to_random()
 
 func _lost_life():
+	jam_event.game_done()
 	get_tree().paused = true
 	animationPlayer.play("caught")
 	await animationPlayer.animation_finished
