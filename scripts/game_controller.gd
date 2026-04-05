@@ -47,8 +47,8 @@ func _lost_life():
 	get_tree().paused = false
 	SignalBus.hp -= 1
 	if SignalBus.hp <= 0:
-		var res := await Talo.leaderboards.add_entry("creatureG-leaderboard", SignalBus.points)
-		print("Added score: %s, at position: %s, new high score: %s" % [SignalBus.points, res.entry.position, "yes" if res.updated else "no"])
+		# var res := await Talo.leaderboards.add_entry("creatureG-leaderboard", SignalBus.points)
+		# print("Added score: %s, at position: %s, new high score: %s" % [SignalBus.points, res.entry.position, "yes" if res.updated else "no"])
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	else:
 		get_tree().reload_current_scene()
