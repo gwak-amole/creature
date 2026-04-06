@@ -11,14 +11,21 @@ extends Node
 @export var main_audio: AudioStreamPlayer
 @export var success_audio: AudioStreamPlayer
 @export var lose_audio: AudioStreamPlayer
+@export var panel: Panel
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
+	panel.hide()
 	await get_tree().process_frame
-	Talo.players.identify("playerone", "username")
 	SignalBus.entered_light.connect(_lost_life)
 	SignalBus.game_done.connect(move_task_to_random)
+	if SignalBus.took_tutorial == false:
+		panel.show()
+		get_tree().paused = true
+	else:
+		panel.hide()
+		get_tree().paused = false
 	move_task_to_random()
 	for heart in heartContainer.get_children():
 		heart.hide()
@@ -81,8 +88,16 @@ func _lost_life():
 	get_tree().paused = false
 	SignalBus.hp -= 1
 	if SignalBus.hp <= 0:
-		# var res := await Talo.leaderboards.add_entry("creatureG-leaderboard", SignalBus.points)
-		# print("Added score: %s, at position: %s, new high score: %s" % [SignalBus.points, res.entry.position, "yes" if res.updated else "no"])
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		get_tree().change_scene_to_file("res://scenes/input_name.tscn")
 	else:
+		SignalBus.took_tutorial = true
 		get_tree().reload_current_scene()
+
+
+func _on_yes_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
+
+
+func _on_no_pressed() -> void:
+	get_tree().paused = false
+	panel.hide()

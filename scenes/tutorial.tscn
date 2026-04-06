@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://jkaivmibnbxg"]
+
+[ext_resource type="Texture2D" uid="uid://deyxc7ch328kl" path="res://assets/tutorial1.png" id="1_c13y7"]
+[ext_resource type="Script" uid="uid://ldhf56u7sdwt" path="res://scripts/tutorial.gd" id="1_ckvwl"]
+[ext_resource type="Texture2D" uid="uid://d36a7dstrynxl" path="res://assets/tutorial2.png" id="2_8ho6b"]
+[ext_resource type="Texture2D" uid="uid://dyak8dp4ynkhe" path="res://assets/tutorial3.png" id="3_4kmhl"]
+[ext_resource type="Texture2D" uid="uid://hrrr6ntk062o" path="res://assets/tutorial4.png" id="4_cq4me"]
+[ext_resource type="Texture2D" uid="uid://baf6s2kq2u6lm" path="res://assets/tutorial5.png" id="5_6yjpi"]
+[ext_resource type="Texture2D" uid="uid://dtvneml8wtx7q" path="res://assets/tutorial6.png" id="6_gbqnl"]
+[ext_resource type="Texture2D" uid="uid://cc176ttxkelf5" path="res://assets/tutorial7.png" id="7_gbqnl"]
+[ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="9_nlqja"]
+[ext_resource type="AudioStream" uid="uid://cuppxsyfbj3wf" path="res://audio/music/833636__nomagician__butterflow-menu-music-theme.mp3" id="10_0epgs"]
+
+[sub_resource type="Animation" id="Animation_8ho6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_c13y7")]
+}
+
+[sub_resource type="Animation" id="Animation_c13y7"]
+resource_name = "step_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_c13y7"), ExtResource("2_8ho6b"), ExtResource("1_c13y7")]
+}
+
+[sub_resource type="Animation" id="Animation_6yjpi"]
+resource_name = "step_2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_4kmhl"), ExtResource("4_cq4me"), ExtResource("3_4kmhl")]
+}
+
+[sub_resource type="Animation" id="Animation_ckvwl"]
+resource_name = "step_3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_6yjpi")]
+}
+
+[sub_resource type="Animation" id="Animation_nlqja"]
+resource_name = "step_4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_gbqnl")]
+}
+
+[sub_resource type="Animation" id="Animation_0epgs"]
+resource_name = "step_5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_gbqnl")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ho6b"]
+_data = {
+&"RESET": SubResource("Animation_8ho6b"),
+&"step_1": SubResource("Animation_c13y7"),
+&"step_2": SubResource("Animation_6yjpi"),
+&"step_3": SubResource("Animation_ckvwl"),
+&"step_4": SubResource("Animation_nlqja"),
+&"step_5": SubResource("Animation_0epgs")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1758391279]
+process_mode = 3
+script = ExtResource("1_ckvwl")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=151001252]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_c13y7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2128649602]
+libraries/ = SubResource("AnimationLibrary_8ho6b")
+
+[node name="Panel" type="Panel" parent="." unique_id=419425155]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -167.0
+offset_right = -16.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Panel" unique_id=690654247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = -19.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_nlqja")
+theme_override_font_sizes/font_size = 50
+autowrap_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=702288144]
+stream = ExtResource("10_0epgs")
