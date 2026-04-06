@@ -6,6 +6,7 @@ extends Node
 @export var heartContainer: HBoxContainer
 @export var points_label: Label
 @export var jam_event: CanvasLayer
+@export var jam_event_2: CanvasLayer
 @export var camera: Camera2D
 @export var main_audio: AudioStreamPlayer
 @export var success_audio: AudioStreamPlayer
@@ -27,7 +28,7 @@ func _ready():
 	main_audio.play()
 
 func move_task_to_random():
-	camera.apply_shake(0.0)
+	camera.apply_shake(0.0, false)
 	points_label.text = str(SignalBus.points)
 	if markerArray.is_empty():
 		return
@@ -49,12 +50,16 @@ func move_task_to_random():
 func _on_task_body_entered(body: Node2D) -> void:
 	if SignalBus.still_jam:
 		jam_event.show()
+	elif SignalBus.still_jam_2:
+		jam_event_2.show()
 	else:
-		SignalBus.jam_chance = rng.randi_range(1, 4)
+		SignalBus.jam_chance = rng.randi_range(1, 5)
 		if body.name == "creature":
 			if SignalBus.jam_chance == 1:
 				jam_event.jam_event()
-				camera.apply_shake(1.0)
+				camera.apply_shake(1.0, false)
+			elif SignalBus.jam_chance == 2:
+				jam_event_2._start_game()
 			else:
 				await get_tree().create_timer(1.0).timeout
 				var bodies = area.get_overlapping_bodies()
@@ -67,6 +72,7 @@ func _on_task_body_entered(body: Node2D) -> void:
 
 func _lost_life():
 	jam_event._game_done()
+	jam_event_2._game_done()
 	get_tree().paused = true
 	animationPlayer.play("caught")
 	lose_audio.play()

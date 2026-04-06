@@ -1,20 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1nxji5qfguu"]
+[gd_scene format=3 uid="uid://b1nxji5qfguu"]
 
-[ext_resource type="Script" path="res://scripts/creature.gd" id="1_e1j8l"]
+[ext_resource type="Script" uid="uid://uvcgri5nfwof" path="res://scripts/creature.gd" id="1_e1j8l"]
 [ext_resource type="SpriteFrames" uid="uid://wmnioaapjvtq" path="res://assets/sprite_frames/creature_sprite_frames.tres" id="1_xsvrx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2gnit"]
-radius = 12.0
 
-[node name="creature" type="CharacterBody2D"]
+[node name="creature" type="CharacterBody2D" unique_id=653239661]
 script = ExtResource("1_e1j8l")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=405488818]
 texture_filter = 1
 sprite_frames = ExtResource("1_xsvrx")
 animation = &"walking"
-frame_progress = 0.444467
+frame_progress = 0.880074
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=780864981]
 position = Vector2(-1, 2)
 shape = SubResource("CircleShape2D_2gnit")

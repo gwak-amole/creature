@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df7xcj8a06bm7"
-path="res://.godot/imported/creaturewalking.png-db6f3263f7667f24a340ff5e6f99b027.ctex"
+uid="uid://ds7l6xdmesph2"
+path="res://.godot/imported/coininsert1.png-0253ab9b2df8a2e78134fab3f9bed1ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/creaturewalking.png"
-dest_files=["res://.godot/imported/creaturewalking.png-db6f3263f7667f24a340ff5e6f99b027.ctex"]
+source_file="res://assets/coininsert1.png"
+dest_files=["res://.godot/imported/coininsert1.png-0253ab9b2df8a2e78134fab3f9bed1ac.ctex"]
 
 [params]
 

@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://b3hnhda1vw5p8"]
+
+[ext_resource type="Script" uid="uid://cnpmiw8gcttid" path="res://scripts/leaderboard.gd" id="1_mrg81"]
+[ext_resource type="PackedScene" uid="uid://cddyms4ph7rrk" path="res://scenes/leaderboardrow.tscn" id="2_wgq7h"]
+[ext_resource type="FontFile" uid="uid://d12qcyala78rd" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="3_8lgqg"]
+[ext_resource type="Texture2D" uid="uid://c1fj6tvptwv42" path="res://assets/vignette2.png" id="3_jfen3"]
+[ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="4_e4dr1"]
+[ext_resource type="AudioStream" uid="uid://cuppxsyfbj3wf" path="res://audio/music/833636__nomagician__butterflow-menu-music-theme.mp3" id="6_6lrio"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jfen3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lrio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldk02"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Leaderboard" type="Control" unique_id=832343040]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mrg81")
+row_template = ExtResource("2_wgq7h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=753138094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11858138, 0.11858138, 0.11858138, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2028070289]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jfen3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=585856359]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -131.875
+offset_top = -145.0
+offset_right = 131.875
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Leaderboardlist" type="VBoxContainer" parent="ScrollContainer" unique_id=176939677]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1617688137]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_top = 51.0
+offset_right = 237.5
+offset_bottom = 127.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_8lgqg")
+theme_override_font_sizes/font_size = 75
+text = "Leaderboard"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1610249422]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -202.5
+offset_right = 223.0
+offset_bottom = -151.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=774127466]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_e4dr1")
+theme_override_font_sizes/font_size = 50
+text = "Player"
+
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=886998985]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_e4dr1")
+theme_override_font_sizes/font_size = 50
+text = "Score"
+
+[node name="Button" type="Button" parent="." unique_id=476539937]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -82.0
+offset_right = 92.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_e4dr1")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jfen3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6lrio")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ldk02")
+text = "back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1086684791]
+stream = ExtResource("6_6lrio")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

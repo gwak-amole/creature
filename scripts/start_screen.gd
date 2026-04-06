@@ -25,3 +25,12 @@ func _process(delta: float) -> void:
 		$AnimationPlayer.play("going_in")
 		await $AnimationPlayer.animation_finished
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+
+func _on_button_pressed() -> void:
+	$menu.stop()
+	$AnimationPlayer.stop()
+	await get_tree().physics_frame
+	$AnimationPlayer.play("going_in")
+	await $AnimationPlayer.animation_finished
+	get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")

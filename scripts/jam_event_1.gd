@@ -1,6 +1,7 @@
 extends CanvasLayer
 @export var first_button_group: VBoxContainer
 @export var second_button_group: VBoxContainer
+@export var success_audio: AudioStreamPlayer
 var rng = RandomNumberGenerator.new()
 var button_press = 0
 var all_buttons = []
@@ -56,6 +57,7 @@ func _on_texture_button_toggled(toggled_on: bool) -> void:
 		if button_press == 3:
 			SignalBus.points += 1
 			SignalBus.game_done.emit()
+			success_audio.play()
 			_game_done()
 	else:
 		button_press -=1

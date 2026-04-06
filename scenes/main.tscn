@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://d1utxmds6w765" path="res://audio/music/645335__audiosea__pentax-mz-7-shutter.wav" id="14_a8y0u"]
 [ext_resource type="AudioStream" uid="uid://yfryorcw563q" path="res://audio/music/113095__edgardedition__insertcoin.wav" id="14_jbj1t"]
 [ext_resource type="AudioStream" uid="uid://bxf0f0luafacj" path="res://audio/music/lose_life_creature.wav" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://8wm3siapn45" path="res://scenes/jam_event_2.tscn" id="17_muem4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kk6xv"]
 size = Vector2(39, 52)
@@ -93,7 +94,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("lose_life_creature:playing")
+tracks/4/path = NodePath("audio/lose_life_creature:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -157,7 +158,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("lose_life_creature:playing")
+tracks/4/path = NodePath("audio/lose_life_creature:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -217,7 +218,7 @@ color = Color(0.172833, 0.172833, 0.172833, 1)
 modulate = Color(1, 1, 1, 0)
 position = Vector2(130, 35)
 
-[node name="Game Controller" type="Node" parent="." unique_id=93182155 node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer", "points_label", "jam_event", "camera", "main_audio", "success_audio", "lose_audio")]
+[node name="Game Controller" type="Node" parent="." unique_id=93182155 node_paths=PackedStringArray("markerArray", "area", "animationPlayer", "heartContainer", "points_label", "jam_event", "jam_event_2", "camera", "main_audio", "success_audio", "lose_audio")]
 script = ExtResource("4_iabij")
 markerArray = [NodePath("../markers/Marker2D"), NodePath("../markers/Marker2D2"), NodePath("../markers/Marker2D3"), NodePath("../markers/Marker2D4"), NodePath("../markers/Marker2D5"), NodePath("../markers/Marker2D6")]
 area = NodePath("../task")
@@ -225,10 +226,11 @@ animationPlayer = NodePath("../AnimationPlayer")
 heartContainer = NodePath("../ui top/hearts")
 points_label = NodePath("../ui top/Label")
 jam_event = NodePath("../jam_event")
+jam_event_2 = NodePath("../jam_event_2")
 camera = NodePath("../Camera2D")
-main_audio = NodePath("../main")
-success_audio = NodePath("../success")
-lose_audio = NodePath("../lose")
+main_audio = NodePath("../audio/main")
+success_audio = NodePath("../audio/success")
+lose_audio = NodePath("../audio/lose")
 
 [node name="markers" type="Node" parent="." unique_id=1348915768]
 
@@ -359,23 +361,31 @@ theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 1
 
-[node name="jam_event" parent="." unique_id=1487911958 instance=ExtResource("11_ya4ey")]
+[node name="jam_event" parent="." unique_id=1487911958 node_paths=PackedStringArray("success_audio") instance=ExtResource("11_ya4ey")]
 visible = false
+success_audio = NodePath("../audio/success")
 
-[node name="main" type="AudioStreamPlayer" parent="." unique_id=1276184691]
+[node name="audio" type="Node" parent="." unique_id=1266144215]
+
+[node name="main" type="AudioStreamPlayer" parent="audio" unique_id=1276184691]
 stream = ExtResource("13_trceg")
 
-[node name="success" type="AudioStreamPlayer" parent="." unique_id=1312862760]
+[node name="success" type="AudioStreamPlayer" parent="audio" unique_id=1312862760]
 stream = ExtResource("14_jbj1t")
 
-[node name="lose" type="AudioStreamPlayer" parent="." unique_id=1481977255]
+[node name="lose" type="AudioStreamPlayer" parent="audio" unique_id=1481977255]
 process_mode = 3
 stream = ExtResource("14_a8y0u")
 
-[node name="lose_life_creature" type="AudioStreamPlayer" parent="." unique_id=206671106]
+[node name="lose_life_creature" type="AudioStreamPlayer" parent="audio" unique_id=206671106]
 stream = ExtResource("15_jkv2x")
+
+[node name="jam_event_2" parent="." unique_id=2072259232 node_paths=PackedStringArray("camera", "success_audio") instance=ExtResource("17_muem4")]
+camera = NodePath("../Camera2D")
+success_audio = NodePath("../audio/success")
 
 [connection signal="body_entered" from="task" to="Game Controller" method="_on_task_body_entered"]
 [connection signal="body_entered" from="task" to="task/ProgressBar" method="_on_task_body_entered"]
 [connection signal="body_exited" from="task" to="task/ProgressBar" method="_on_task_body_exited"]
 [connection signal="body_exited" from="task" to="jam_event" method="_on_task_body_exited"]
+[connection signal="body_exited" from="task" to="jam_event_2" method="_on_task_body_exited"]

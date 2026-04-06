@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://8wm3siapn45"]
+
+[ext_resource type="Script" uid="uid://du33cbiwm305h" path="res://scripts/jam_event_2.gd" id="1_clci7"]
+[ext_resource type="Texture2D" uid="uid://c7ucyihrqyut0" path="res://assets/coinslot.png" id="1_j5gd3"]
+[ext_resource type="Texture2D" uid="uid://ds7l6xdmesph2" path="res://assets/coininsert1.png" id="2_clci7"]
+[ext_resource type="Texture2D" uid="uid://b8s0anvoc6ec0" path="res://assets/coininsert2.png" id="4_afinu"]
+[ext_resource type="FontFile" uid="uid://ckblp2yslut0d" path="res://fonts/Jersey_15/Jersey15-Regular.ttf" id="5_5qm7y"]
+[ext_resource type="AudioStream" uid="uid://q75sbll8f328" path="res://audio/music/659319__jorge_m_rodrigues__old-oven-timer.mp3" id="6_n8qe1"]
+
+[sub_resource type="Animation" id="Animation_5qm7y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_clci7")]
+}
+
+[sub_resource type="Animation" id="Animation_n8qe1"]
+resource_name = "insert"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_clci7"), ExtResource("4_afinu"), ExtResource("2_clci7")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65njl"]
+_data = {
+&"RESET": SubResource("Animation_5qm7y"),
+&"insert": SubResource("Animation_n8qe1")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afinu"]
+bg_color = Color(0.3113859, 0.4268949, 0.67029214, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qm7y"]
+bg_color = Color(0.28298852, 0.604577, 0.3363589, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id="Animation_vsrmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("instruction:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_65njl"]
+resource_name = "text"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("instruction:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vsrmr"]
+_data = {
+&"RESET": SubResource("Animation_vsrmr"),
+&"text": SubResource("Animation_65njl")
+}
+
+[node name="jam_event_2" type="CanvasLayer" unique_id=2072259232 node_paths=PackedStringArray("progress")]
+script = ExtResource("1_clci7")
+progress = NodePath("ProgressBar")
+
+[node name="bg" type="TextureRect" parent="." unique_id=325043811]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j5gd3")
+
+[node name="hand" type="TextureRect" parent="." unique_id=2098410345]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = 30.0
+offset_right = 240.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_clci7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2108966396]
+libraries/ = SubResource("AnimationLibrary_65njl")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=533603312]
+offset_left = 346.0
+offset_top = 495.0
+offset_right = 807.0
+offset_bottom = 515.0
+theme_override_styles/background = SubResource("StyleBoxFlat_afinu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5qm7y")
+value = 10.0
+show_percentage = false
+
+[node name="instruction" type="Label" parent="." unique_id=363945826]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -34.0
+offset_right = 119.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_5qm7y")
+theme_override_font_sizes/font_size = 30
+text = "COIN MACHINE JAMMED"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=2027801338]
+libraries/ = SubResource("AnimationLibrary_vsrmr")
+
+[node name="Label" type="Label" parent="." unique_id=1845556308]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = 119.5
+offset_right = 89.0
+offset_bottom = 142.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_5qm7y")
+theme_override_font_sizes/font_size = 25
+text = "spam e to mash coin in"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=188178565]
+stream = ExtResource("6_n8qe1")
